@@ -2,7 +2,6 @@ import React from 'react';
 import SuccessModalStyle from './SuccessModalStyle';
 import HeaderText from '../../atoms/HeaderText/Text';
 import Text from '../../atoms/Text/Text';
-import Button from '../../atoms/Button/Button';
 import Image from '../../atoms/Image/Img';
 import close from '../../../assets/images/close.svg';
 

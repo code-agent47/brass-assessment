@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import OTPModalStyle from './OTPModalStyle';
 import HeaderText from '../../atoms/HeaderText/Text';
 import Text from '../../atoms/Text/Text';

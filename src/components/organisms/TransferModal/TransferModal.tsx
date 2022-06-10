@@ -59,7 +59,7 @@ const TransferModal = ({handleClose, showOTPModal}: TransferProps) => {
         }
 
         fetchMyAPI()
-    }, [])
+    })
     
     const onFormSubmit = () => {
         return async (evt: React.FormEvent) => {          

@@ -1,36 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import Text from '../../atoms/Text/Text';
 import TransfersTableStyle from './TransfersTableStyle';
-import Pagination from '../Pagination/Pagination';
-import {useDispatch, useSelector} from 'react-redux';
-import { TypedDispatch, RootStore } from '../../../config/ConfigStore';
+// import Pagination from '../Pagination/Pagination';
+import {useDispatch} from 'react-redux';
+import { TypedDispatch } from '../../../config/ConfigStore';
 import {DashboardActions} from '../../../redux/actions/DashboardAction';
 
 const TransfersTable = () => {
   const [toggleDetailsModal, setToggleDetailsModal] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const dispatch: TypedDispatch = useDispatch();
-  const dashboardState = useSelector( (state:RootStore) => state.dashboardReducer);
-
-  const generatePageContent = async() => {
-    await dispatch(DashboardActions(`/transfer?perPage=10&page=${page}`));
-  }
+  // const dashboardState = useSelector( (state:RootStore) => state.dashboardReducer);
 
   useEffect(() => {
-    generatePageContent();
-  }, [page])
+    dispatch(DashboardActions(`/transfer?perPage=10&page=${page}`));
+  }, [dispatch, page])
 
-  const setPagination = (value: number) => {
-    setPage(value)
-  }
+  // const setPagination = (value: number) => {
+  //   setPage(value)
+  // }
 
   const showDetailsModal = () => {
     setToggleDetailsModal(true)
   }
   
-  const hideDetailsModal = () => {
-    setToggleDetailsModal(false)
-  }
+  // const hideDetailsModal = () => {
+  //   setToggleDetailsModal(false)
+  // }
 
   const renderDetailsModal = () => {
     if(toggleDetailsModal){
@@ -40,24 +36,24 @@ const TransfersTable = () => {
     }
   }
 
-  const renderTableRow = () => {
-    let responses = dashboardState.results?.data.map((response: Record<any, any>,key: number) => {
-      return(
-        <tr className={`table-row`}>
-          <td> Sept 04, 2021 </td>
-          <td> Eigege Samantha </td>
-          <td> Kuda </td>
-          <td> 0918390229 </td>
-          <td> ₦60,000 </td>
-          <td> NIBSS Instant Payment Outward </td>
-          <td> 
-            <button className={`button`} onClick={() => showDetailsModal()}> View Details </button>
-          </td>
-        </tr>
-      )
-    })
-    return responses
-  }
+  // const renderTableRow = () => {
+  //   let responses = dashboardState.results?.data.map((response: Record<any, any>,key: number) => {
+  //     return(
+  //       <tr className={`table-row`}>
+  //         <td> Sept 04, 2021 </td>
+  //         <td> Eigege Samantha </td>
+  //         <td> Kuda </td>
+  //         <td> 0918390229 </td>
+  //         <td> ₦60,000 </td>
+  //         <td> NIBSS Instant Payment Outward </td>
+  //         <td> 
+  //           <button className={`button`} onClick={() => showDetailsModal()}> View Details </button>
+  //         </td>
+  //       </tr>
+  //     )
+  //   })
+  //   return responses
+  // }
 
   return (
     <TransfersTableStyle>

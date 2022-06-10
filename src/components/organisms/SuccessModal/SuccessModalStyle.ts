@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Colors from "../../../helpers/Colors";
 
 const SuccessModalStyle = styled.div`
     animation: show-bg 0.5s linear forwards;
