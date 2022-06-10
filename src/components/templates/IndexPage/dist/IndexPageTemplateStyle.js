@@ -1,0 +1,10 @@
+"use strict";
+var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+exports.__esModule = true;
+var styled_components_1 = require("styled-components");
+var IndexPageTemplateStyle = styled_components_1["default"].div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  .transactions{\n    margin-top: 180px;\n    @media screen and (max-width: 576px){\n      margin-top: 130px;\n    }\n  }\n  .transactions__desc{\n    h2{\n      color: #0D0000;\n      font-family: 'Ubuntu';\n      font-style: normal;\n      font-weight: 400;\n      font-size: 1.125em;\n      line-height: 22px;\n      margin-top: 5px;\n    }\n    .button{\n      background: #0BCE5A;\n      border-radius: 5px;   \n      color: white;\n      font-family: 'Ubuntu';\n      font-weight: 400;\n      font-size: 0.875em;\n      height: 45px;  \n      margin-bottom: 0;\n      width: 168px;\n      @media screen and (max-width: 576px){\n        width: 108px;\n      }\n    }\n  }\n  .transactions__table{\n    overflow-x: auto;\n    overflow-y : visible;\n  }\n"], ["\n  .transactions{\n    margin-top: 180px;\n    @media screen and (max-width: 576px){\n      margin-top: 130px;\n    }\n  }\n  .transactions__desc{\n    h2{\n      color: #0D0000;\n      font-family: 'Ubuntu';\n      font-style: normal;\n      font-weight: 400;\n      font-size: 1.125em;\n      line-height: 22px;\n      margin-top: 5px;\n    }\n    .button{\n      background: #0BCE5A;\n      border-radius: 5px;   \n      color: white;\n      font-family: 'Ubuntu';\n      font-weight: 400;\n      font-size: 0.875em;\n      height: 45px;  \n      margin-bottom: 0;\n      width: 168px;\n      @media screen and (max-width: 576px){\n        width: 108px;\n      }\n    }\n  }\n  .transactions__table{\n    overflow-x: auto;\n    overflow-y : visible;\n  }\n"])));
+exports["default"] = IndexPageTemplateStyle;
+var templateObject_1;

@@ -1,0 +1,10 @@
+"use strict";
+var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+exports.__esModule = true;
+var styled_components_1 = require("styled-components");
+var FieldComponentStyle = styled_components_1["default"].div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    position:relative;\n    .auth-input {\n        border: 1px solid #dee1e6;\n        border-radius: 4px;\n        box-sizing:border-box;\n        color: #4a4b4d;\n        font-family: 'Ubuntu';\n        font-size: 0.875em;\n        height:47px;\n        margin-bottom:0;\n        padding: 13px 16px;\n        width: 100%;\n    }\n    .success{\n        border: 1px solid #20B92F;\n    }\n    .error{\n        border: 1px solid #B92020;\n    }\n    .form-box-unit{\n        position:relative;\n        margin-bottom:0;\n        width:100%;\n        select{\n            appearance:none;\n            background:transparent;\n            width:100%;\n            option{\n                font-family:Helvetica Neue;\n            }\n        }\n    }\n    \n"], ["\n    position:relative;\n    .auth-input {\n        border: 1px solid #dee1e6;\n        border-radius: 4px;\n        box-sizing:border-box;\n        color: #4a4b4d;\n        font-family: 'Ubuntu';\n        font-size: 0.875em;\n        height:47px;\n        margin-bottom:0;\n        padding: 13px 16px;\n        width: 100%;\n    }\n    .success{\n        border: 1px solid #20B92F;\n    }\n    .error{\n        border: 1px solid #B92020;\n    }\n    .form-box-unit{\n        position:relative;\n        margin-bottom:0;\n        width:100%;\n        select{\n            appearance:none;\n            background:transparent;\n            width:100%;\n            option{\n                font-family:Helvetica Neue;\n            }\n        }\n    }\n    \n"])));
+exports["default"] = FieldComponentStyle;
+var templateObject_1;
