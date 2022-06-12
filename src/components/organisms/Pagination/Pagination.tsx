@@ -1,84 +1,105 @@
-import React, {Component} from 'react';
+import React, { useEffect } from 'react';
 import PaginationStyle from './PaginationStyle';
-import Text from '../../atoms/Text/Text';
-import Img from '../../atoms/Image/Img';
-import { connect, ConnectedProps } from 'react-redux';
+import HeaderText from '../../atoms/HeaderText/Text';
+import Button from '../../atoms/Button/Button';
+import {useSelector} from 'react-redux';
 import { RootStore } from '../../../config/ConfigStore';
-import nextImg from '../../../assets/images/next.svg';
-import prevImg from '../../../assets/images/prev.svg';
+const {swipeHorizontally} = require('swipepackage')
 
-type MenuProps = HeaderProps & {
-  pagination: string,
-  changePage: Function
+type PaginationProps = {
+    changePage: Function
 }
+const Pagination = ({changePage}: PaginationProps) => {
+    const dashboardState = useSelector( (state:RootStore) => state.dashboardReducer);
+    useEffect(() => {
+        invokeSlider()
+    }, [])
 
-type MenuState = {
-  
-};
-
-class Pagination extends Component<MenuProps, MenuState>{
-
-  updateActivePage(value: string){
-    this.props.changePage(value)
-  }
-
-  renderNextButton(){
-    // let nextPage = this.props.dashboardState.results.data.meta.next;
-    let nextPage = 1;
-    if(nextPage > 1){
-        return(
-            <Img image={nextImg} onClick={ () => this.updateActivePage(nextPage.toString())} alt="next-btn" />  
-        )
+    const invokeSlider = () => {
+        swipeHorizontally(document.getElementsByClassName("pagination-numbers")[0],2);
     }
-    else{
-        return(
-            <Img image={nextImg} className={`disabled`} onClick={ () => this.updateActivePage(nextPage.toString())} alt="next-btn" />  
-        )
-    }
-  }
 
-  renderPrevButton(){
-    // let prevPage = this.props.dashboardState.results.data.meta.previous;
-    let prevPage = 0;
-    if(prevPage >= 1){
-        return(
-            <Img image={prevImg} alt="prev-btn" onClick={ () => this.updateActivePage(prevPage.toString())}/>
-        )
+    const updateActivePage = (value: number) => {
+        changePage(value)
     }
-    else{
-        return(
-          <Img image={prevImg} className={`disabled`} alt="prev-btn" onClick={ () => this.updateActivePage(prevPage.toString())}/>
-        )
-    }
-  }
 
-  render(){
-    return (
-      <PaginationStyle>
-        <div className={`controls`}>
-          <div className="controls-con">
-            <div className={`count-control`}>
-              {/* <Text value={`1 - ${
-                    (this.props.pagination > this.props.dashboardState.results.data.meta.totalRecords) ? this.props.dashboardState.results.data.meta.totalRecords : this.props.pagination
-                } of ${this.props.dashboardState.results.data.meta.totalRecords}`} className={`page-count`} /> */}
-              <div className={`pagination`}>
-                {this.renderPrevButton()}
-                {this.renderNextButton()}
-              </div>
+    const pagination = 10;
+
+    const renderPageNumbers = () => {
+        let pageNumber = 0;
+        let pageNumbers = [];
+        let activePage = dashboardState.results.meta.page;
+        let totalPage = dashboardState.results.meta.pageCount;
+        for(let i=0; i < totalPage; i++){
+            pageNumber++
+            pageNumbers.push(pageNumber);
+        }
+        let pageNumberListing = pageNumbers.map( (pageNumber,key) => {
+            if(pageNumber === activePage){
+                return(
+                    <div className={`pagination-number__item pagination-number__active-item`}
+                     key={key} onClick={ ()=> { updateActivePage(pageNumber) } } >
+                        <HeaderText value={`${pageNumber}`} />
+                    </div> 
+                )  
+            }
+            return(
+                <div className={`pagination-number__item`} key={key} onClick={ ()=> { updateActivePage(pageNumber)} }>
+                    <HeaderText value={`${pageNumber}`} />
+                </div> 
+            )
+        })
+        return pageNumberListing;
+    }
+
+    const renderNextButton = () => {
+        let nextPage = dashboardState.results.meta.page + 1;
+        if(nextPage > 1 && nextPage <= dashboardState.results.meta.pageCount){
+            return(
+                <Button className={`button`} onClick={ () => updateActivePage(nextPage)} value="NEXT" />   
+            )
+        }
+        else{
+            return(
+                <Button className={`button button--disabled`} value="NEXT" />
+            )
+        }
+    }
+
+    const renderPrevButton = () => {
+        let prevPage = dashboardState.results.meta.page - 1;
+        if(prevPage >= 1){
+            return(
+                <Button className={`button`} onClick={ () => updateActivePage(prevPage)} value="PREV" />   
+            )
+        }
+        else{
+            return(
+                <Button className={`button button--disabled`} value="PREV" />
+            )
+        }
+    }
+
+    return(
+        <PaginationStyle className={`container-full`}>
+            <div className={`pagination-info`}>
+                <HeaderText value={`Showing 1 of ${
+                (pagination > dashboardState.results.meta.total) ? dashboardState.results.meta.total : pagination
+            } of ${dashboardState.results.meta.total} entries`} />
             </div>
-          </div>
-        </div>
-      </PaginationStyle>
-    );
-  }
+            <div className={`pagination-action-group`}>
+                <div className={`pagination-action-group__button`}>
+                    {renderPrevButton()}
+                </div>
+                <div className={`pagination-numbers pagination-number`}>
+                    {renderPageNumbers()}       
+                </div>
+                <div className={`pagination-action-group__button`}>
+                    {renderNextButton()}
+                </div>
+            </div>
+        </PaginationStyle>
+    )
 }
 
-const mapStateToProps = (state: RootStore) => ({
-  alertState: state.alertReducer,
-  dashboardState: state,
-});
-
-const connector = connect(mapStateToProps, {});
-type HeaderProps = ConnectedProps<typeof connector>;
-
-export default connector(Pagination);
+export default Pagination;
