@@ -1,0 +1,11 @@
+"use strict";
+var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+exports.__esModule = true;
+var styled_components_1 = require("styled-components");
+// import Colors from '../../../helpers/Colors';
+var DashboardMenuStyle = styled_components_1["default"].div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  box-sizing: border-box;\n  padding: 0 24px 0 40px;\n  width: 100%;\n\n  a{\n    width: 100%;\n  }\n  .dashboard-menu__item{\n    justify-content: normal;\n    margin-bottom: 6px;\n    width: 100%;\n    img{\n      height: 24px;\n      margin: 10px 0 10px 9px;\n      width: 24px;\n    }\n    .--active{\n      display: none;\n    }\n    p{\n      color: #353F50;\n      font-family: 'Averta-Regular';\n      font-style: normal;\n      font-weight: 400;\n      font-size: 1em;\n      line-height: 24px;\n      margin: 12px 8px 8px 15px;\n    }\n  }\n  .active > .dashboard-menu__item{\n    background: #FFFFFF;\n    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);\n    border-radius: 8px;\n    p{\n      color: #DC4437;\n    }\n    .--active{\n      display: block;\n    }\n    .--inactive{\n      display: none;\n    }\n  }\n  \n  \n"], ["\n  box-sizing: border-box;\n  padding: 0 24px 0 40px;\n  width: 100%;\n\n  a{\n    width: 100%;\n  }\n  .dashboard-menu__item{\n    justify-content: normal;\n    margin-bottom: 6px;\n    width: 100%;\n    img{\n      height: 24px;\n      margin: 10px 0 10px 9px;\n      width: 24px;\n    }\n    .--active{\n      display: none;\n    }\n    p{\n      color: #353F50;\n      font-family: 'Averta-Regular';\n      font-style: normal;\n      font-weight: 400;\n      font-size: 1em;\n      line-height: 24px;\n      margin: 12px 8px 8px 15px;\n    }\n  }\n  .active > .dashboard-menu__item{\n    background: #FFFFFF;\n    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);\n    border-radius: 8px;\n    p{\n      color: #DC4437;\n    }\n    .--active{\n      display: block;\n    }\n    .--inactive{\n      display: none;\n    }\n  }\n  \n  \n"])));
+exports["default"] = DashboardMenuStyle;
+var templateObject_1;
