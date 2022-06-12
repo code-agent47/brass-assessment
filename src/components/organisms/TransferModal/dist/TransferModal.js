@@ -93,7 +93,7 @@ var TransferModal = function (_a) {
             });
         }
         fetchMyAPI();
-    });
+    }, [dispatch, store]);
     var onFormSubmit = function () {
         return function (evt) { return __awaiter(void 0, void 0, void 0, function () {
             var validateFields, value, reduxStore, value_1, updatedStore;
