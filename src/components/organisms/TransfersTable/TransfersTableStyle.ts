@@ -17,6 +17,7 @@ const TransfersTableStyle = styled.div`
           font-style: normal;
           font-weight: 600;
           font-size: 0.875em;
+          text-align: left;
         }
       }
     }
@@ -52,7 +53,7 @@ const TransfersTableStyle = styled.div`
         position: relative;
       }
       .button{
-        background: grey;
+        background: grey !important;
         border-radius: 5px;   
         color: white;
         font-family: 'Ubuntu';

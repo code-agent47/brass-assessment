@@ -1,68 +1,67 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 exports.__esModule = true;
 var react_1 = require("react");
 var PaginationStyle_1 = require("./PaginationStyle");
-var Img_1 = require("../../atoms/Image/Img");
+var Text_1 = require("../../atoms/HeaderText/Text");
+var Button_1 = require("../../atoms/Button/Button");
 var react_redux_1 = require("react-redux");
-var next_svg_1 = require("../../../assets/images/next.svg");
-var prev_svg_1 = require("../../../assets/images/prev.svg");
-var Pagination = /** @class */ (function (_super) {
-    __extends(Pagination, _super);
-    function Pagination() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Pagination.prototype.updateActivePage = function (value) {
-        this.props.changePage(value);
+var swipeHorizontally = require('swipepackage').swipeHorizontally;
+var Pagination = function (_a) {
+    var changePage = _a.changePage;
+    var dashboardState = react_redux_1.useSelector(function (state) { return state.dashboardReducer; });
+    react_1.useEffect(function () {
+        invokeSlider();
+    }, []);
+    var invokeSlider = function () {
+        swipeHorizontally(document.getElementsByClassName("pagination-numbers")[0], 2);
     };
-    Pagination.prototype.renderNextButton = function () {
-        var _this = this;
-        // let nextPage = this.props.dashboardState.results.data.meta.next;
-        var nextPage = 1;
-        if (nextPage > 1) {
-            return (react_1["default"].createElement(Img_1["default"], { image: next_svg_1["default"], onClick: function () { return _this.updateActivePage(nextPage.toString()); }, alt: "next-btn" }));
+    var updateActivePage = function (value) {
+        changePage(value);
+    };
+    var pagination = 10;
+    var renderPageNumbers = function () {
+        var pageNumber = 0;
+        var pageNumbers = [];
+        var activePage = dashboardState.results.meta.page;
+        var totalPage = dashboardState.results.meta.pageCount;
+        for (var i = 0; i < totalPage; i++) {
+            pageNumber++;
+            pageNumbers.push(pageNumber);
+        }
+        var pageNumberListing = pageNumbers.map(function (pageNumber, key) {
+            if (pageNumber === activePage) {
+                return (react_1["default"].createElement("div", { className: "pagination-number__item pagination-number__active-item", key: key, onClick: function () { updateActivePage(pageNumber); } },
+                    react_1["default"].createElement(Text_1["default"], { value: "" + pageNumber })));
+            }
+            return (react_1["default"].createElement("div", { className: "pagination-number__item", key: key, onClick: function () { updateActivePage(pageNumber); } },
+                react_1["default"].createElement(Text_1["default"], { value: "" + pageNumber })));
+        });
+        return pageNumberListing;
+    };
+    var renderNextButton = function () {
+        var nextPage = dashboardState.results.meta.page + 1;
+        if (nextPage > 1 && nextPage <= dashboardState.results.meta.pageCount) {
+            return (react_1["default"].createElement(Button_1["default"], { className: "button", onClick: function () { return updateActivePage(nextPage); }, value: "NEXT" }));
         }
         else {
-            return (react_1["default"].createElement(Img_1["default"], { image: next_svg_1["default"], className: "disabled", onClick: function () { return _this.updateActivePage(nextPage.toString()); }, alt: "next-btn" }));
+            return (react_1["default"].createElement(Button_1["default"], { className: "button button--disabled", value: "NEXT" }));
         }
     };
-    Pagination.prototype.renderPrevButton = function () {
-        var _this = this;
-        // let prevPage = this.props.dashboardState.results.data.meta.previous;
-        var prevPage = 0;
+    var renderPrevButton = function () {
+        var prevPage = dashboardState.results.meta.page - 1;
         if (prevPage >= 1) {
-            return (react_1["default"].createElement(Img_1["default"], { image: prev_svg_1["default"], alt: "prev-btn", onClick: function () { return _this.updateActivePage(prevPage.toString()); } }));
+            return (react_1["default"].createElement(Button_1["default"], { className: "button", onClick: function () { return updateActivePage(prevPage); }, value: "PREV" }));
         }
         else {
-            return (react_1["default"].createElement(Img_1["default"], { image: prev_svg_1["default"], className: "disabled", alt: "prev-btn", onClick: function () { return _this.updateActivePage(prevPage.toString()); } }));
+            return (react_1["default"].createElement(Button_1["default"], { className: "button button--disabled", value: "PREV" }));
         }
     };
-    Pagination.prototype.render = function () {
-        return (react_1["default"].createElement(PaginationStyle_1["default"], null,
-            react_1["default"].createElement("div", { className: "controls" },
-                react_1["default"].createElement("div", { className: "controls-con" },
-                    react_1["default"].createElement("div", { className: "count-control" },
-                        react_1["default"].createElement("div", { className: "pagination" },
-                            this.renderPrevButton(),
-                            this.renderNextButton()))))));
-    };
-    return Pagination;
-}(react_1.Component));
-var mapStateToProps = function (state) { return ({
-    alertState: state.alertReducer,
-    dashboardState: state
-}); };
-var connector = react_redux_1.connect(mapStateToProps, {});
-exports["default"] = connector(Pagination);
+    return (react_1["default"].createElement(PaginationStyle_1["default"], { className: "container-full" },
+        react_1["default"].createElement("div", { className: "pagination-info" },
+            react_1["default"].createElement(Text_1["default"], { value: "Showing 1 of " + ((pagination > dashboardState.results.meta.total) ? dashboardState.results.meta.total : pagination) + " of " + dashboardState.results.meta.total + " entries" })),
+        react_1["default"].createElement("div", { className: "pagination-action-group" },
+            react_1["default"].createElement("div", { className: "pagination-action-group__button" }, renderPrevButton()),
+            react_1["default"].createElement("div", { className: "pagination-numbers pagination-number" }, renderPageNumbers()),
+            react_1["default"].createElement("div", { className: "pagination-action-group__button" }, renderNextButton()))));
+};
+exports["default"] = Pagination;
