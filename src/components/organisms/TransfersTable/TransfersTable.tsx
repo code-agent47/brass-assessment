@@ -10,7 +10,10 @@ import FetchLoading from '../../molecules/FetchLoading/FetchLoading';
 import DetailsModal from '../DetailsModal/DetailsModal';
 const CurrencyFormat = require('react-currency-format');
 
-const TransfersTable = () => {
+type TransfersTableProps = {
+  reloadPage: boolean
+}
+const TransfersTable = ({reloadPage}: TransfersTableProps) => {
   const [toggleDetailsModal, setToggleDetailsModal] = useState(false);
   const [fetchLoading, setFetchLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -30,7 +33,7 @@ const TransfersTable = () => {
     }
     generatePageContent();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page])
+  }, [reloadPage, page])
 
   
 
