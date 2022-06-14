@@ -12,6 +12,7 @@ const IndexPageTemplate = () => {
   const [toggleTransferModal, setToggleTransferModal] = useState(false);
   const [toggleSuccessModal, setToggleSuccessModal] = useState(false);
   const [toggleOTPModal, setToggleOTPModal] = useState(false);
+  const [reloadPage, setReloadPage] = useState(false)
 
   const showTransferModal = () => {
     setToggleTransferModal(true)
@@ -34,6 +35,12 @@ const IndexPageTemplate = () => {
   }
   
   const hideSuccessModal = () => {
+    if(reloadPage){
+      setReloadPage(false);
+    }
+    else{
+      setReloadPage(true);
+    }
     setToggleSuccessModal(false)
   }
 
@@ -72,7 +79,7 @@ const IndexPageTemplate = () => {
           <HeaderText value="Transfer History" />
           <Button value="Fund Transfer" className={`button`} onClick={() => showTransferModal()} />
           <div className={`container-full transactions__table`}>
-            <TransfersTable />
+            <TransfersTable reloadPage={reloadPage}/>
           </div>
         </div>
       </div>
