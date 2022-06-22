@@ -52,9 +52,9 @@ const IndexPageTemplate = () => {
     }
   }
 
-  const showOTPModal = () => {
-    setToggleOTPModal(true)
-  }
+  // const showOTPModal = () => {
+  //   setToggleOTPModal(true)
+  // }
   
   const hideOTPModal = () => {
     setToggleOTPModal(false)
