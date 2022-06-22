@@ -14,7 +14,7 @@ import cogoToast from "cogo-toast";
 
 type TransferProps = {
     handleClose: Function,
-    showOTPModal: Function
+    showSuccessModal: Function
 }
 
 type FormProps = {
@@ -25,7 +25,7 @@ type FormProps = {
 
 type PromiseBoolean = (value: string, code: string) => Promise <Boolean> 
 
-const TransferModal = ({handleClose, showOTPModal}: TransferProps) => {
+const TransferModal = ({handleClose, showSuccessModal}: TransferProps) => {
     const [fields, setFields] = useState({
         accountName: '',
         bank: '',
@@ -100,7 +100,7 @@ const TransferModal = ({handleClose, showOTPModal}: TransferProps) => {
                     cogoToast.error(updatedStore.alertReducer.message, { position: "top-right" })
                 }
                 if(updatedStore.submitReducer.results.data.transfer_code !== undefined){
-                    showOTPModal()
+                    showSuccessModal()
                 }
             }
             handleClose()
