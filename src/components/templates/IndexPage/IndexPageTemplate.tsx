@@ -25,7 +25,7 @@ const IndexPageTemplate = () => {
   const renderTransferModal = () => {
     if(toggleTransferModal){
       return(
-        <TransferModal handleClose={hideTransferModal} showOTPModal={showOTPModal}/>
+        <TransferModal handleClose={hideTransferModal} showSuccessModal={showSuccessModal}/>
       )
     }
   }
