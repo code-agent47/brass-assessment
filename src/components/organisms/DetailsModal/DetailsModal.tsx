@@ -67,6 +67,12 @@ const DetailsModal = ({handleClose}: DetailsModalProps) => {
                        <Text value={state.submitReducer.results.data.transfer_code} />
                     </div>
                 </div>
+                <div className={`modal-container__box__content`}>
+                    <div className={`modal-container__box__content__item`}>
+                       <HeaderText value="Status" className={`label`} />
+                       <Text value={state.submitReducer.results.data.status} />
+                    </div>
+                </div>
                 </div>  
             </div>
         </DetailsModalStyle>
